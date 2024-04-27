@@ -1,0 +1,74 @@
+#install livewire:
+composer require livewire/livewire
+
+#Publishing the configuration file:
+php artisan livewire:publish --config   //je config/livewire.php created
+
+#create template layout:
+php artisan livewire:layout  // ye command laravel v10 nd php v8+ me use hoga
+
+#creating components view file and class file:
+php artisan make:livewire ShowHome
+
+#create table migrate and model and seeder
+php artisan make:model Service -ms  //model name any create 
+php artisan migrate:fresh --seed
+
+#component create view file:
+php artisan make:component TeamCard --view  //TeamCard name ma any name view file
+
+#seeder create:
+php artisan make:seeder MemeberTableSeeder  //any name 
+run: php artisan db:seed --class=MemeberTableSeeder 
+
+#paginator:
+{{ $articles->links() }}  //view file me use hota hai paginator me $articles ek class file me varaible name hai 
+class file me: paginate(2); //any number  paginate means (next, previous)
+nd appserviceprovider file me: paginator class add ( use Illuminate\Pagination\Paginator; ) nd
+                                boot function me public function boot()
+                                                {
+                                                    Paginator::useBootstrapFive();
+                                                }
+        =====or=====
+use WithPagination;
+protected $paginationTheme = 'bootstrap';   //class file  me used ShowBlog.php file me add kiya 
+
+##apply links and fix broken links
+app/helper.php file create->cmd me composer dump-autoload command run
+helper.php file->code.... 
+footer ma links apva mate use thay(ex.aama services ma api che )
+
+##form submit: contact page ma kryu che
+
+
+#filament install admin panel:   
+composer require filament/filament:"^3.2" -W
+php artisan filament:install --panels
+
+php artisan make:filament-user     // user, email nd password create karva   //aa cmd pehla php artisan migrate cmnd use karvu
+
+#note: filament package me laravel v10 nd php v8.0+ hona chaiye.
+to ye project me filament ka use nhi kiya hai.
+
+
+
+
+[
+                'title'         => 'Digital Marketing',
+                'icon_class'    => 'dummy',
+                'short_desc'    => 'Digital marketing is the promotion and marketing of goods and services to consumers through digital channels and electronic technologies.',
+                'description'   => 'Digital marketing, also called online marketing, is the promotion of brands to connect with potential customers using the   internet and other forms of digital communication.',
+                'status'        => fake()->randomElement([0,1]),
+                
+            ],
+            [
+                'title'         => 'Web Design',
+                'icon_class'    => 'dummy',
+                'short_desc'    => 'A web designer is responsible for creating the design and layout of a website or web pages',
+                'description'   => 'Web design is the creation of websites and pages to reflect a company`s brand and information and ensure a user-friendly experience. Appearance and design are incorporated as vital elements whether you`re designing a website, mobile app or maintaining content on a web page.',
+                'status'        => fake()->randomElement([0,1]),
+            ]
+
+            {{ $title ?? 'Laravel Livewire Web App' }}
+
+            
